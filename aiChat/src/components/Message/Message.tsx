@@ -85,6 +85,15 @@ export const ChatDisplay = () => {
     const element = document.getElementsByClassName("chat-display")[0];
     element.scrollTop = element.scrollHeight;
   }
+
+  function currentTime(date: Date): string {
+    const displayTime = new Date(date);
+    const hours = displayTime.getUTCHours().toString().padStart(2, "0");
+    const minutes = displayTime.getUTCMinutes().toString().padStart(2, "0");
+    const ampm = Number(hours) >= 12 ? "PM" : "AM";
+    return `${hours}:${minutes} ${ampm}`;
+  }
+
   const [conversation, setConversation] = useState([]);
 
   async function getMessages() {
@@ -112,7 +121,7 @@ export const ChatDisplay = () => {
             <ChatMessage
               sender={msg.sender}
               msg={msg.message}
-              date={msg.createdAt}
+              date={currentTime(msg.createdAt)}
             />
           </div>
         )
