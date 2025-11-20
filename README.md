@@ -8,6 +8,10 @@ An opinionated minimal AI chat demo application with a TypeScript + React fronte
 
 ---
 
+<img width="860" height="912" alt="image" src="https://github.com/user-attachments/assets/8d942c40-abc1-44b8-a1f1-33e1e82a1aaf" />
+
+---
+
 **Table of contents**
 
 - [Project Overview](#project-overview)
@@ -179,9 +183,3 @@ This repository does not include a license file by default. Add a `LICENSE` if y
 
 ---
 
-If you'd like, I can also:
-
-- Add a minimal `Procfile` or Dockerfile for deployment.
-- Add example environment variable file templates (e.g. `.env.example`).
-
-Feel free to tell me which of those you'd like next.
