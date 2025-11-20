@@ -77,6 +77,11 @@ export const ChatMessage = ({
 
 // ChatDisplay component
 export const ChatDisplay = () => {
+  // Add scroll to bottom function
+  function scrollToBottom() {
+    const element = document.getElementsByClassName("chat-display")[0];
+    element.scrollTop = element.scrollHeight;
+  }
   const [conversation, setConversation] = useState([]);
 
   async function getMessages() {
@@ -86,6 +91,7 @@ export const ChatDisplay = () => {
 
   useEffect(() => {
     getMessages();
+    scrollToBottom();
   }, [conversation]);
 
   // Receive notes from the backend and set it to Notes useState
