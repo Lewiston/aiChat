@@ -48,9 +48,11 @@ import "./Message.css";
 export const ChatMessage = ({
   sender,
   msg,
+  date,
 }: {
   sender: "user" | "bot";
   msg: string;
+  date: Date;
 }) => {
   return (
     <div className={`chat ${sender === "user" ? "chat-user" : "chat-bot"}`}>
@@ -65,6 +67,7 @@ export const ChatMessage = ({
         }`}
       >
         <p>{msg}</p>
+        <span className="msg-date">{date.toString()}</span>
       </div>
       {sender === "user" && (
         <div className="msg-icon user-icon">
@@ -99,9 +102,18 @@ export const ChatDisplay = () => {
   return (
     <div className="chat-display">
       {conversation.map(
-        (msg: { id: number; sender: "user" | "bot"; message: string }) => (
+        (msg: {
+          id: number;
+          sender: "user" | "bot";
+          message: string;
+          createdAt: Date;
+        }) => (
           <div key={msg.id} className="chat-display">
-            <ChatMessage sender={msg.sender} msg={msg.message} />
+            <ChatMessage
+              sender={msg.sender}
+              msg={msg.message}
+              date={msg.createdAt}
+            />
           </div>
         )
       )}
