@@ -1,0 +1,19 @@
+.app-container {
+  position: relative;
+}
+
+.input-form-container {
+  width: 90%;
+  max-width: 720px;
+  padding: 8rem 0 4rem;
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-trans),
+    var(--color-bg),
+    var(--color-bg),
+    var(--color-bg)
+  );
+  /* backdrop-filter: blur(1.6rem); */
+}

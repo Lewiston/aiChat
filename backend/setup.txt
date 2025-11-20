@@ -1,0 +1,6 @@
+// Collect user message
+// fetch backend api and store message
+// load from backend to show user input
+// call on google gemini api
+// save google response
+// load messages again to show in the frontend

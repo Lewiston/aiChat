@@ -1,0 +1,54 @@
+.user-input-form {
+  display: flex;
+  justify-content: space-between;
+  gap: min(2.4rem, 5%);
+  /* margin-top: 2.4rem; */
+  width: 100%;
+}
+
+input[type="text"] {
+  padding: 1.6rem;
+  width: 100%;
+  border-radius: 100px;
+  border: 1px solid var(--color-ui-border);
+  background-color: var(--color-input-bg);
+  font-size: 1.8rem;
+}
+
+input[type="text"]::placeholder {
+  color: var(--color-text-secondary);
+  font-size: 1.6rem;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-orange-primary);
+  background-color: var(--color-surface);
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  background-color: var(--color-orange-primary);
+  border: none;
+  border-radius: 100px;
+  padding: 1.6rem 1.6rem;
+  color: var(--color-surface);
+  font-size: 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 180px;
+  min-width: fit-content;
+
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-orange-hover);
+}
+
+.send-icon {
+  fill: var(--color-surface);
+}
