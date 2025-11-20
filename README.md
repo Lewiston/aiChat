@@ -6,17 +6,14 @@ An opinionated minimal AI chat demo application with a TypeScript + React fronte
 
 **Contents:** frontend (Vite + React + TypeScript) and backend (Python)
 
----
 
-<img width="860" height="912" alt="image" src="https://github.com/user-attachments/assets/8d942c40-abc1-44b8-a1f1-33e1e82a1aaf" />
-
----
 
 **Table of contents**
 
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Sample Images](#sample-images)
 - [Prerequisites](#prerequisites)
 - [Local Setup](#local-setup)
   - [Frontend (client)](#frontend-client)
@@ -48,6 +45,14 @@ This repository is useful as a starter kit for building conversational UI protot
 - Frontend: Vite, React, TypeScript, CSS
 - Backend: Python (Flask or similar), requirements managed in `backend/requirements.txt`
 - Tooling: npm/yarn for frontend, python3/venv for backend
+
+## Sample Images
+
+<img width="857" height="121" alt="image" src="https://github.com/user-attachments/assets/8b7b42aa-f6a5-4869-8f14-7607dd9ae55c" />
+
+<img width="845" height="598" alt="image" src="https://github.com/user-attachments/assets/4ca6ac4f-ad79-47c3-ad6d-7199eb944bdf" />
+
+<img width="925" height="927" alt="image" src="https://github.com/user-attachments/assets/2a360eda-74d2-4b21-8ea4-d3a0e89d7e1c" />
 
 ## Prerequisites
 
