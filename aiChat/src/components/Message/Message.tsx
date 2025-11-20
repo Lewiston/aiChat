@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { fetchMessages } from "../../api/api";
 import { RiRobot3Fill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
@@ -81,10 +81,7 @@ export const ChatMessage = ({
 // ChatDisplay component
 export const ChatDisplay = () => {
   // Add scroll to bottom function
-  function scrollToBottom() {
-    const element = document.getElementsByClassName("chat-display")[0];
-    element.scrollTop = element.scrollHeight;
-  }
+  const scrollRef = useRef(null);
 
   function currentTime(date: Date): string {
     const displayTime = new Date(date);
@@ -103,13 +100,16 @@ export const ChatDisplay = () => {
 
   useEffect(() => {
     getMessages();
-    scrollToBottom();
+    const element = scrollRef.current;
+    if (element) {
+      element.scrollTop = element.scrollHeight;
+    }
   }, [conversation]);
 
   // Receive notes from the backend and set it to Notes useState
 
   return (
-    <div className="chat-display">
+    <div className="chat-display" ref={scrollRef}>
       {conversation.map(
         (msg: {
           id: number;
@@ -117,7 +117,7 @@ export const ChatDisplay = () => {
           message: string;
           createdAt: Date;
         }) => (
-          <div key={msg.id} className="chat-display">
+          <div key={msg.id}>
             <ChatMessage
               sender={msg.sender}
               msg={msg.message}
