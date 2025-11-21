@@ -99,17 +99,30 @@ export const ChatDisplay = () => {
   }
 
   useEffect(() => {
-    getMessages();
+    // const timeout = setTimeout(() => {
+    //   const element = scrollRef.current;
+    //   if (element) {
+    //     element.scrollIntoView({ behavior: "smooth", block: "end" });
+    //     // element.scrollTop = element.scrollHeight;
+    //   }
+    // }, 100);
+    // return () => clearTimeout(timeout);
+    // getMessages();
     const element = scrollRef.current;
     if (element) {
-      element.scrollTop = element.scrollHeight;
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      // element.scrollTop = element.scrollHeight;
     }
+  }, [conversation]);
+
+  useEffect(() => {
+    getMessages();
   }, [conversation]);
 
   // Receive notes from the backend and set it to Notes useState
 
   return (
-    <div className="chat-display" ref={scrollRef}>
+    <div className="chat-display">
       {conversation.map(
         (msg: {
           id: number;
@@ -126,6 +139,7 @@ export const ChatDisplay = () => {
           </div>
         )
       )}
+      <div ref={scrollRef}></div>
     </div>
   );
 };
