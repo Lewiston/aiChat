@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app) # Connect to React
 
 # Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:4her@localhost/aiChat_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:<password>@localhost/aiChat_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
