@@ -98,25 +98,33 @@ export const ChatDisplay = () => {
     setConversation(data);
   }
 
-  useEffect(() => {
-    // const timeout = setTimeout(() => {
-    //   const element = scrollRef.current;
-    //   if (element) {
-    //     element.scrollIntoView({ behavior: "smooth", block: "end" });
-    //     // element.scrollTop = element.scrollHeight;
-    //   }
-    // }, 100);
-    // return () => clearTimeout(timeout);
-    // getMessages();
-    const element = scrollRef.current;
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      // element.scrollTop = element.scrollHeight;
-    }
-  }, [conversation]);
+  // useEffect(() => {
+  //   // const timeout = setTimeout(() => {
+  //   //   const element = scrollRef.current;
+  //   //   if (element) {
+  //   //     element.scrollIntoView({ behavior: "smooth", block: "end" });
+  //   //     // element.scrollTop = element.scrollHeight;
+  //   //   }
+  //   // }, 100);
+  //   // return () => clearTimeout(timeout);
+  //   // getMessages();
+  //   const element = scrollRef.current;
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth", block: "start" });
+  //     // element.scrollTop = element.scrollHeight;
+  //   }
+  // }, [conversation]);
+
+  // useEffect(() => {
+  //   getMessages();
+  // }, []);
 
   useEffect(() => {
     getMessages();
+    const element = scrollRef.current;
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }, [conversation]);
 
   // Receive notes from the backend and set it to Notes useState
