@@ -1,11 +1,11 @@
-import React from "react";
+// import React from "react";
 import { GoogleGenAI } from "@google/genai";
 import { addMessage, aiMessage, fetchMessages } from "../../api/api";
 import { useState } from "react";
 import "./InputForm.css";
 import { IoSend } from "react-icons/io5";
 
-const InputForm = ({ toggleButton }) => {
+const InputForm = ({ toggleButton }: { toggleButton: () => void }) => {
   // State management for input form
   const [userInput, setUserInput] = useState("");
 
