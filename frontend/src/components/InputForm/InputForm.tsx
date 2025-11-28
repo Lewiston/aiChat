@@ -27,7 +27,7 @@ const InputForm = ({ toggleButton }: { toggleButton: () => void }) => {
 
             addMessage(userInput);
             fetchMessages();
-            const api_key = process.env.API_KEY;
+            const api_key = import.meta.env.VITE_API_KEY;
 
             const ai = new GoogleGenAI({ apiKey: api_key });
             async function main(message: string) {

@@ -1,8 +1,9 @@
-// Google ai response
+const render = import.meta.env.VITE_RENDER;
+// const localhost = import.meta.env.VITE_LOCALHOST;
 
 // Fetch all messages from the backend
 export async function fetchMessages() {
-  const response = await fetch("http://127.0.0.1:5000/api/messages");
+  const response = await fetch(`${render}/api/messages`);
   const data = await response.json();
   return data;
 }
@@ -12,7 +13,7 @@ export async function addMessage(userInput: string) {
   const newMessage = { sender: "user", message: userInput };
 
   try {
-    await fetch(`http://localhost:5000/api/messages`, {
+    await fetch(`${render}/api/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newMessage),
