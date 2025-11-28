@@ -1,15 +1,23 @@
 from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
+from dotenv import load_dotenv
+import os
 from google import genai
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app) # Connect to React
 
+
+api_key = os.getenv('API_KEY')
+postgres_uri = os.getenv('DB_URI')
+
 # Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:<password>@localhost/aiChat_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = postgres_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -28,45 +36,45 @@ class Message(db.Model):
         return {"id": self.id, "sender": self.sender, "message": self.message, "createdAt": self.createdAt}
     
 # Function to get AI response from Google Gemini API
-def client_response(user_message):
+# def client_response(user_message):
 
-    try:
-        client = genai.Client(api_key="AIzaSyCdWCBfDp6biTmwPu2GPnLcF5y8kN2ZteA")
+#     try:
+#         client = genai.Client(api_key=api_key)
 
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=user_message
-     )
-        # print(response.text)
-        return response.text
-    except Exception as e:
-        print(f"Gemini API Error: {e}")
-        return "Sorry, I'm having trouble responding right now."
+#         response = client.models.generate_content(
+#             model="gemini-2.5-flash",
+#             contents=user_message
+#      )
+#         # print(response.text)
+#         return response.text
+#     except Exception as e:
+#         print(f"Gemini API Error: {e}")
+#         return "Sorry, I'm having trouble responding right now."
     
 
 
-def save_ai_response(user_message):
-    ai_response = client_response(user_message)
-    ai_message = Message(sender="bot", message=ai_response)
-    db.session.add(ai_message)
-    db.session.commit()
-    return ("AI response added successfully"), 201
+# def save_ai_response(user_message):
+#     ai_response = client_response(user_message)
+#     ai_message = Message(sender="bot", message=ai_response)
+#     db.session.add(ai_message)
+#     db.session.commit()
+#     return ("AI response added successfully"), 201
     
 # API to create new message
-@app.route('/api.messages', methods=['POST'])
+@app.route('/api/messages', methods=['POST'])
 def add_message():
     data = request.get_json()
     new_message = Message(sender=data['sender'], message=data['message'])
-    user_message = data['message']
+    # user_message = data['message']
     db.session.add(new_message)
     db.session.commit()
-    save_ai_response(user_message)
+    # save_ai_response(user_message)
     return ("New message added successfully"), 201
 
 
 
 # API to get all messages
-@app.route('/api.messages', methods=['GET'])
+@app.route('/api/messages', methods=['GET'])
 def get_messages():
     # Returning everything in the database    
     all_messages = Message.query.order_by(Message.createdAt).all() # currently ordered by date created
@@ -81,4 +89,5 @@ def get_messages():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all() # allow connection to db to create defined models (tables)
-    app.run(debug=True) # Allow for debugging 
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, port=port, host="0.0.0.0") # Allow for debugging 
