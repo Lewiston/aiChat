@@ -13,8 +13,8 @@ app = Flask(__name__)
 CORS(app) # Connect to React
 
 
-api_key = os.getenv('API_KEY')
-postgres_uri = os.getenv('DB_URI')
+api_key = os.getenv('VITE_API_KEY')
+postgres_uri = os.getenv('RENDER_URI')
 
 # Database Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = postgres_uri
@@ -80,6 +80,13 @@ def get_messages():
     all_messages = Message.query.order_by(Message.createdAt).all() # currently ordered by date created
 
     return jsonify([note.to_dict() for note in all_messages]), 200
+
+# API to delete a note
+@app.route('/api/messages', methods=['DELETE'])
+def delete_message():
+    db.session.query(Message).delete()
+    db.session.commit()
+    return jsonify({"message": "Messages deleted successfully"}), 200
 
 
 
