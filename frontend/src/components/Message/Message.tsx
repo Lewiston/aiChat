@@ -52,7 +52,7 @@ export const ChatMessage = ({
 }: {
   sender: "user" | "bot";
   msg: string;
-  date: Date;
+  date: string;
 }) => {
   return (
     <div className={`chat ${sender === "user" ? "chat-user" : "chat-bot"}`}>
@@ -83,7 +83,7 @@ export const ChatDisplay = ({ clicked }: { clicked: boolean }) => {
   // Add scroll to bottom function
   const scrollRef = useRef(null);
 
-  function currentTime(date: Date): string {
+  function currentTime(date: string): string {
     const displayTime = new Date(date);
     const hours = displayTime.getUTCHours().toString().padStart(2, "0");
     const minutes = displayTime.getUTCMinutes().toString().padStart(2, "0");
@@ -133,7 +133,7 @@ export const ChatDisplay = ({ clicked }: { clicked: boolean }) => {
           id: number;
           sender: "user" | "bot";
           message: string;
-          createdAt: Date;
+          createdAt: string;
         }) => (
           <div key={msg.id}>
             <ChatMessage
@@ -150,7 +150,7 @@ export const ChatDisplay = ({ clicked }: { clicked: boolean }) => {
 };
 
 // Main Message component
-const Message = ({ clicked }) => {
+const Message = ({ clicked }: { clicked: boolean }) => {
   return (
     <div className="chat-display-container">
       <ChatDisplay clicked={clicked} />
