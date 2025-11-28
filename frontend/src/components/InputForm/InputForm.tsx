@@ -1,6 +1,6 @@
 // import React from "react";
 import { GoogleGenAI } from "@google/genai";
-import { addMessage, aiMessage, fetchMessages } from "../../api/api";
+import { addMessage, aiMessage, fetchMessages, clearChat } from "../../api/api";
 import { useState } from "react";
 import "./InputForm.css";
 import { IoSend } from "react-icons/io5";
@@ -11,11 +11,10 @@ const InputForm = ({ toggleButton }: { toggleButton: () => void }) => {
 
   return (
     <div>
-      <form action="submit" className="user-input-form" method="POST">
+      <form action="" className="user-input-form" method="POST">
         <input
           type="text"
           placeholder="How can I help today?"
-          required
           className="user-input-msg"
           value={userInput}
           onChange={(event) => setUserInput(event.target.value)}
@@ -49,6 +48,16 @@ const InputForm = ({ toggleButton }: { toggleButton: () => void }) => {
         >
           Send
           <IoSend className="send-icon" />
+        </button>
+        <button
+          className="clear"
+          onClick={(event) => {
+            event.preventDefault(); // Prevent a reload after adding note
+            clearChat();
+            fetchMessages();
+          }}
+        >
+          Clear Chat
         </button>
       </form>
     </div>

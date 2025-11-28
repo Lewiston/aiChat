@@ -52,3 +52,14 @@ button:hover {
 .send-icon {
   fill: var(--color-surface);
 }
+
+.clear {
+  background-color: transparent;
+  color: var(--color-orange-primary);
+  transition: 0.4s ease-in;
+}
+
+.clear:hover {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}

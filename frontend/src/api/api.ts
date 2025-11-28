@@ -31,7 +31,7 @@ export async function aiMessage(aiInput: string) {
   const newMessage = { sender: "bot", message: aiInput };
 
   try {
-    await fetch(`http://localhost:5000/api/messages`, {
+    await fetch(`${render}/api/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newMessage),
@@ -44,3 +44,14 @@ export async function aiMessage(aiInput: string) {
   }
 }
 // End of function to add note
+
+// Delete api
+
+export async function clearChat() {
+  await fetch(`${render}/api/messages`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+// Delete api
