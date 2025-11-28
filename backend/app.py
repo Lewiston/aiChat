@@ -14,7 +14,7 @@ CORS(app) # Connect to React
 
 
 api_key = os.getenv('VITE_API_KEY')
-postgres_uri = os.getenv('RENDER_URI')
+postgres_uri = os.getenv('DB_URI')
 
 # Database Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = postgres_uri
